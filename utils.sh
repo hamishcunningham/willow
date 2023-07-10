@@ -11,7 +11,7 @@ export CONSOLE_BAUD=2000000 # Subject to change
 export DOCKER_IMAGE="willow:latest"
 export DOCKER_NAME="willow-build"
 export DIST_FILE="serve/willow-dist.bin"
-export SERVE_PORT="10000"
+export SERVE_PORT="10101"
 
 # ESP-SR Componenent ver hash
 ESP_SR_VER="138a685"
