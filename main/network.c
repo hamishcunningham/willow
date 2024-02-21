@@ -188,6 +188,7 @@ esp_err_t init_wifi(const char *psk, const char *ssid)
     wifi_config_t cfg_wifi = {};
     strlcpy((char *)cfg_wifi.sta.password, psk, sizeof(cfg_wifi.sta.password));
     strlcpy((char *)cfg_wifi.sta.ssid, ssid, sizeof(cfg_wifi.sta.ssid));
+    ESP_LOGI(TAG, "connecting to ssid %s\n", ssid);
 
     set_hostname(ESP_MAC_WIFI_STA);
 

@@ -87,6 +87,15 @@ static void IRAM_ATTR cb_ws_event(const void *arg_evh, const esp_event_base_t *b
                     goto cleanup;
                 }
 
+                // allow external wake, e.g. from a smartwatch
+                cJSON *json_wakeup = cJSON_GetObjectItemCaseSensitive(cjson, "wakeup");
+                if (cJSON_IsObject(json_wakeup)) {
+                    cJSON *wake = cJSON_GetObjectItemCaseSensitive(json_wakeup, "wake");
+                    ESP_LOGI(TAG, "wake");
+                    audio_recorder_trigger_start(hdl_ar);
+                    goto cleanup;
+                }
+
                 cJSON *json_result = cJSON_GetObjectItemCaseSensitive(cjson, "result");
                 if (cJSON_IsObject(json_result)) {
                     cJSON *ok = cJSON_GetObjectItemCaseSensitive(json_result, "ok");
