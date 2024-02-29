@@ -138,6 +138,11 @@ check_deps() {
     fi
 }
 
+do_patch() {
+    cd "$WILLOW_PATH"
+    cat patches/*.patch | patch -p0
+}
+
 generate_speech_commands() {
     rm -rf build/srmodels
     /usr/bin/python3 speech_commands/generate_commands.py
@@ -184,6 +189,8 @@ install() {
 
     cd $WILLOW_PATH
     idf.py set-target "$PLATFORM"
+
+    do_patch
 }
 
 destroy() {

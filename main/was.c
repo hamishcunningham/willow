@@ -90,7 +90,7 @@ static void IRAM_ATTR cb_ws_event(const void *arg_evh, const esp_event_base_t *b
                 // allow external wake, e.g. from a smartwatch
                 cJSON *json_wakeup = cJSON_GetObjectItemCaseSensitive(cjson, "wakeup");
                 if (cJSON_IsObject(json_wakeup)) {
-                    cJSON *wake = cJSON_GetObjectItemCaseSensitive(json_wakeup, "wake");
+                    //cJSON *wake = cJSON_GetObjectItemCaseSensitive(json_wakeup, "wake");
                     ESP_LOGI(TAG, "wake");
                     audio_recorder_trigger_start(hdl_ar);
                     goto cleanup;

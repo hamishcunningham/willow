@@ -164,6 +164,7 @@ err_nvs:
     init_audio();
     init_lvgl_touch();
     init_display_timer();
+    init_sensor_task();
 
 #ifndef CONFIG_WILLOW_ETHERNET
     get_mac_address(); // should be on wifi by now; print the MAC

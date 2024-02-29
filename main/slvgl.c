@@ -47,7 +47,7 @@ enum esp32_s3_box_touch_t {
 esp_lcd_panel_handle_t hdl_lcd = NULL;
 int lvgl_lock_timeout;
 lv_disp_t *ld;
-lv_obj_t *btn_cancel, *lbl_btn_cancel, *lbl_ln1, *lbl_ln2, *lbl_ln3, *lbl_ln4, *lbl_ln5;
+lv_obj_t *btn_cancel, *lbl_btn_cancel, *lbl_ln1, *lbl_ln2, *lbl_ln3, *lbl_ln4, *lbl_ln5, *lbl_sense;
 
 static periph_lcd_t *lcdp;
 
