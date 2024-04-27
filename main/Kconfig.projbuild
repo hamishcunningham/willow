@@ -13,8 +13,30 @@ config WIFI_PASSWORD
     default "mypassword"
     help
         WiFi password (WPA, WPA2, WPA3) for Willow to use.
-
         Can be left blank if the network is open.
+
+config WILLOW_USE_EDUROAM
+    bool "Connect to Eduroam"
+    help
+        Use WPA2 Enterprise / (P)EAP to connect to eduroam.
+
+config WILLOW_EAP_ID
+    string "EAP ID"
+    default "myusername@sheffield.ac.uk"
+    help
+        Identity in phase 1 of EAP procedure.
+
+config WILLOW_EAP_USERNAME
+    string "EAP USERNAME"
+    default "myusername"
+    help
+        Username for EAP method (PEAP).
+
+config WILLOW_EAP_PASSWORD
+    string "EAP PASSWORD"
+    default "mypassword"
+    help
+        Password for EAP method (PEAP).
 
 config WILLOW_WAS_URL
     string "Willow Application Server URL"

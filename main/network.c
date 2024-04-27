@@ -186,7 +186,17 @@ esp_err_t init_wifi(const char *psk, const char *ssid)
     }
 
     wifi_config_t cfg_wifi = {};
+#ifdef WILLOW_USE_EDUROAM
+    ret = esp_eap_client_set_identity((uint8_t *)WILLOW_EAP_ID, strlen(WILLOW_EAP_ID));
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "failed to set EAP client ID: %s", esp_err_to_name(ret));
+        return ret;
+    }
+    esp_eap_client_set_username((uint8_t *)WILLOW_EAP_USERNAME, strlen(WILLOW_EAP_USERNAME));
+    esp_eap_client_set_password((uint8_t *)WILLOW_EAP_PASSWORD, strlen(WILLOW_EAP_PASSWORD));
+#else
     strlcpy((char *)cfg_wifi.sta.password, psk, sizeof(cfg_wifi.sta.password));
+#endif
     strlcpy((char *)cfg_wifi.sta.ssid, ssid, sizeof(cfg_wifi.sta.ssid));
     ESP_LOGI(TAG, "connecting to ssid %s\n", ssid);
 
@@ -197,6 +207,13 @@ esp_err_t init_wifi(const char *psk, const char *ssid)
         ESP_LOGE(TAG, "failed to set Wi-Fi config: %s", esp_err_to_name(ret));
         return ret;
     }
+#ifdef WILLOW_USE_EDUROAM
+    ret = esp_wifi_sta_enterprise_enable();
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "failed to enable sta enterprise: %s", esp_err_to_name(ret));
+        return ret;
+    }
+#endif
 
     ret = esp_wifi_start();
     if (ret != ESP_OK) {
