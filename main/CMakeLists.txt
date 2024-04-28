@@ -53,10 +53,11 @@ if($ENV{WILLOW_SDKCONFIG_SANITY_CHECKS})
             message(FATAL_ERROR "Wi-Fi WPA passphrase must only contain ASCII characters")
         endif()
 
-        string(LENGTH "${CONFIG_WIFI_PASSWORD}" WIFI_PLEN)
-        if(WIFI_PLEN LESS 8 OR WIFI_PLEN GREATER 63)
-            message(FATAL_ERROR "Wi-Fi WPA passphrase must be between 8 and 63 ASCII characters")
-        endif()
+# TODO we don't need passowrd for eduroam?
+#       string(LENGTH "${CONFIG_WIFI_PASSWORD}" WIFI_PLEN)
+#       if(WIFI_PLEN LESS 8 OR WIFI_PLEN GREATER 63)
+#           message(FATAL_ERROR "Wi-Fi WPA passphrase must be between 8 and 63 ASCII characters")
+#       endif()
     endif()
 
 endif()
